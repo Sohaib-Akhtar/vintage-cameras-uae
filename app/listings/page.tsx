@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Camera, ZoomIn } from "lucide-react"
+import { Camera, ZoomIn, ArrowRight } from "lucide-react"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { getListings, type Listing } from "@/lib/supabase"
 
@@ -166,12 +166,16 @@ export default function ListingsPage() {
 
                       <div className="flex items-center justify-between">
                         <div className="text-2xl font-bold text-amber-600">AED {listing.price.toLocaleString()}</div>
-                        <Button
-                          asChild
-                          className="bg-amber-600 hover:bg-amber-700 text-white rounded-full transition-all duration-300 hover:scale-105"
+                        <Link
+                          href={`/product/${listing.id}`}
+                          className="inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-200 active:scale-95 relative overflow-hidden group"
                         >
-                          <Link href={`/product/${listing.id}`}>View</Link>
-                        </Button>
+                          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                          <span className="relative z-10 flex items-center">
+                            View
+                            <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                          </span>
+                        </Link>
                       </div>
                     </div>
                   </CardContent>

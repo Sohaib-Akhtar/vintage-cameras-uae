@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Camera, Star, ArrowRight, Mountain, Cherry } from "lucide-react"
 
@@ -47,16 +46,16 @@ export default function HomePage() {
               </div>
 
               <div>
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
+                <Link
+                  href="/listings"
+                  className="inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-amber-200 active:scale-95 relative overflow-hidden group"
                 >
-                  <Link href="/listings">
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                  <span className="relative z-10 flex items-center">
                     View Collection
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
               </div>
             </div>
 
@@ -128,16 +127,13 @@ export default function HomePage() {
           <p className="text-xl text-amber-100 mb-8">
             Discover cameras that have captured decades of memories and are ready to create new ones
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-amber-600 hover:bg-gray-100 px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
+          <Link
+            href="/listings"
+            className="inline-flex items-center justify-center bg-white text-amber-600 hover:bg-amber-50 hover:text-amber-700 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-200 active:scale-95"
           >
-            <Link href="/listings">
-              Browse Collection
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+            Browse Collection
+            <ArrowRight className="ml-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
       </section>
 

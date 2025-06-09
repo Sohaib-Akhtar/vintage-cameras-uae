@@ -301,16 +301,16 @@ export default function ProductPage() {
                   />
                   <span className="truncate">Contact via WhatsApp</span>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="py-3 sm:py-4 px-4 sm:px-6 text-sm sm:text-lg font-medium w-full min-w-0"
+                <Link
+                  href="/listings"
+                  className="inline-flex items-center justify-center py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm font-medium w-full min-w-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md transition-all duration-300 hover:scale-105 hover:shadow-md focus:outline-none focus:ring-4 focus:ring-amber-200 active:scale-95 relative overflow-hidden group"
                 >
-                  <Link href="/listings" className="flex items-center justify-center truncate">
-                    <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3 flex-shrink-0" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+                  <span className="relative z-10 flex items-center justify-center truncate">
+                    <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 flex-shrink-0 transition-transform duration-300 group-hover:-translate-x-1" />
                     <span className="truncate">Back to Collection</span>
-                  </Link>
-                </Button>
+                  </span>
+                </Link>
               </div>
             </div>
           </div>
