@@ -155,12 +155,12 @@ export default function ProductPage() {
       </div>
 
       {/* Product Details */}
-      <section className="py-12">
+      <section className="py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 w-full min-w-0">
             {/* Image Gallery */}
-            <div className="space-y-6">
-              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg aspect-[4/3]">
+            <div className="space-y-4 sm:space-y-6 w-full overflow-hidden">
+              <div className="relative bg-white rounded-lg overflow-hidden shadow-lg aspect-square w-full max-w-full">
                 <Image
                   src={selectedImage || listing.images[0] || "/placeholder.svg"}
                   alt={listing.title}
@@ -171,10 +171,10 @@ export default function ProductPage() {
                   <DialogTrigger asChild>
                     <Button
                       size="sm"
-                      className="absolute bottom-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full"
+                      className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-black/50 hover:bg-black/70 text-white rounded-full text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2"
                     >
-                      <ZoomIn className="h-4 w-4 mr-2" />
-                      Zoom
+                      <ZoomIn className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                      <span className="hidden sm:inline">Zoom</span>
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-5xl max-h-[90vh] p-0">
@@ -193,35 +193,37 @@ export default function ProductPage() {
 
               {/* Thumbnails */}
               {listing.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-4">
-                  {listing.images.map((image, index) => (
-                    <button
-                      key={index}
-                      className={`relative rounded-md overflow-hidden border-2 transition-all ${
-                        (selectedImage || listing.images[0]) === image
-                          ? "border-amber-500 shadow-md"
-                          : "border-transparent hover:border-amber-300"
-                      }`}
-                      onClick={() => setSelectedImage(image)}
-                    >
-                      <div className="aspect-square relative">
-                        <Image
-                          src={image || "/placeholder.svg"}
-                          alt={`${listing.title} - View ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </button>
-                  ))}
+                <div className="w-full overflow-x-auto">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-4 min-w-0">
+                    {listing.images.map((image, index) => (
+                      <button
+                        key={index}
+                        className={`relative rounded-md overflow-hidden border-2 transition-all ${
+                          (selectedImage || listing.images[0]) === image
+                            ? "border-amber-500 shadow-md"
+                            : "border-transparent hover:border-amber-300"
+                        }`}
+                        onClick={() => setSelectedImage(image)}
+                      >
+                        <div className="aspect-square relative">
+                          <Image
+                            src={image || "/placeholder.svg"}
+                            alt={`${listing.title} - View ${index + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Product Info */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 w-full min-w-0 overflow-hidden">
               <div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <Badge className="bg-amber-600 hover:bg-amber-700 mb-3">{listing.condition}</Badge>
                   {listing.year && (
                     <Badge variant="outline" className="mb-3">
@@ -230,12 +232,16 @@ export default function ProductPage() {
                     </Badge>
                   )}
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{listing.title}</h1>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 break-words">
+                  {listing.title}
+                </h1>
                 <div className="flex items-center text-gray-500 mb-4">
-                  <span className="font-medium text-gray-700">{listing.brand}</span>
+                  <span className="font-medium text-gray-700 break-words">{listing.brand}</span>
                 </div>
-                <div className="text-3xl font-bold text-amber-600 mb-6">AED {listing.price.toLocaleString()}</div>
-                <p className="text-gray-600 leading-relaxed">{listing.description}</p>
+                <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-4 sm:mb-6">
+                  AED {listing.price.toLocaleString()}
+                </div>
+                <p className="text-gray-600 leading-relaxed break-words overflow-hidden">{listing.description}</p>
               </div>
 
               <Separator />
@@ -246,35 +252,35 @@ export default function ProductPage() {
                   <Info className="h-5 w-5 mr-2 text-amber-600" />
                   Specifications
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5" />
-                    <div>
+                    <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                    <div className="min-w-0">
                       <p className="font-medium">Brand</p>
-                      <p className="text-gray-600">{listing.brand}</p>
+                      <p className="text-gray-600 break-words">{listing.brand}</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5" />
-                    <div>
+                    <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                    <div className="min-w-0">
                       <p className="font-medium">Condition</p>
-                      <p className="text-gray-600">{listing.condition}</p>
+                      <p className="text-gray-600 break-words">{listing.condition}</p>
                     </div>
                   </div>
                   {listing.year && (
                     <div className="flex items-start space-x-2">
-                      <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5" />
-                      <div>
+                      <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                      <div className="min-w-0">
                         <p className="font-medium">Year</p>
-                        <p className="text-gray-600">{listing.year}</p>
+                        <p className="text-gray-600 break-words">{listing.year}</p>
                       </div>
                     </div>
                   )}
                   <div className="flex items-start space-x-2">
-                    <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5" />
-                    <div>
+                    <CheckCircle className="h-5 w-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                    <div className="min-w-0">
                       <p className="font-medium">Type</p>
-                      <p className="text-gray-600">Vintage Camera</p>
+                      <p className="text-gray-600 break-words">Vintage Camera</p>
                     </div>
                   </div>
                 </div>
@@ -283,19 +289,26 @@ export default function ProductPage() {
               <Separator />
 
               {/* Actions */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3 sm:gap-4 w-full">
                 <Button
                   onClick={handleWhatsAppContact}
-                  size="lg"
-                  className="bg-green-600 hover:bg-green-700 text-white py-4 px-6 text-lg font-medium"
+                  className="bg-green-600 hover:bg-green-700 text-white py-3 sm:py-4 px-4 sm:px-6 text-sm sm:text-lg font-medium w-full min-w-0 truncate"
                 >
-                  <img src="/icons/whatsapp.png" alt="WhatsApp" className="h-6 w-6 mr-3" />
-                  Contact via WhatsApp
+                  <img
+                    src="/icons/whatsapp.png"
+                    alt="WhatsApp"
+                    className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3 flex-shrink-0"
+                  />
+                  <span className="truncate">Contact via WhatsApp</span>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="py-4 px-6 text-lg font-medium">
-                  <Link href="/listings">
-                    <ArrowLeft className="h-6 w-6 mr-3" />
-                    Back to Collection
+                <Button
+                  asChild
+                  variant="outline"
+                  className="py-3 sm:py-4 px-4 sm:px-6 text-sm sm:text-lg font-medium w-full min-w-0"
+                >
+                  <Link href="/listings" className="flex items-center justify-center truncate">
+                    <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3 flex-shrink-0" />
+                    <span className="truncate">Back to Collection</span>
                   </Link>
                 </Button>
               </div>

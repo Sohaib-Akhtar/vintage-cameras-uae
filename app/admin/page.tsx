@@ -501,19 +501,19 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
       <nav className="border-b border-amber-200 bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 h-auto sm:h-16 py-2 sm:py-0">
             <div className="flex items-center space-x-2">
-              <Camera className="h-8 w-8 text-amber-600" />
-              <span className="text-2xl font-bold text-gray-900">Admin Panel</span>
+              <Camera className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600" />
+              <span className="text-lg sm:text-2xl font-bold text-gray-900">Admin Panel</span>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 text-sm sm:text-base">
               <DatabaseStatus />
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild size="sm" className="px-2 sm:px-4">
                 <a href="/listings" target="_blank" rel="noreferrer">
                   View Site
                 </a>
               </Button>
-              <Button variant="outline" onClick={handleLogout}>
+              <Button variant="outline" onClick={handleLogout} size="sm" className="px-2 sm:px-4">
                 Logout
               </Button>
             </div>
@@ -659,35 +659,47 @@ export default function AdminPage() {
           </Dialog>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {listings.map((listing) => (
             <Card key={listing.id} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-4">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-start">
-                    <h3 className="font-semibold text-lg">{listing.title}</h3>
-                    <Badge variant="secondary">{listing.condition}</Badge>
+              <CardContent className="p-3 sm:p-4">
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="flex justify-between items-start gap-2">
+                    <h3 className="font-semibold text-base sm:text-lg break-words min-w-0 flex-1">{listing.title}</h3>
+                    <Badge variant="secondary" className="text-xs sm:text-sm flex-shrink-0">
+                      {listing.condition}
+                    </Badge>
                   </div>
 
-                  <p className="text-gray-600 text-sm line-clamp-2">{listing.description}</p>
+                  <p className="text-gray-600 text-xs sm:text-sm line-clamp-2 break-words overflow-hidden">
+                    {listing.description}
+                  </p>
 
-                  <div className="flex justify-between items-center text-sm text-gray-500">
-                    <span>{listing.brand}</span>
-                    <span>AED {listing.price.toLocaleString()}</span>
+                  <div className="flex justify-between items-center text-xs sm:text-sm text-gray-500 gap-2">
+                    <span className="break-words min-w-0 flex-1">{listing.brand}</span>
+                    <span className="font-medium text-amber-600 flex-shrink-0">
+                      AED {listing.price.toLocaleString()}
+                    </span>
                   </div>
 
-                  <div className="flex justify-end space-x-2">
-                    <Button size="sm" variant="outline" onClick={() => handleEdit(listing)} disabled={isLoading}>
-                      <Edit className="h-4 w-4" />
+                  <div className="flex justify-end space-x-1 sm:space-x-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleEdit(listing)}
+                      disabled={isLoading}
+                      className="px-2 sm:px-3"
+                    >
+                      <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => handleDelete(listing.id)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-red-600 hover:text-red-700 px-2 sm:px-3"
                       disabled={isLoading}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                   </div>
                 </div>
